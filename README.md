@@ -21,15 +21,22 @@ Usage
 -----
 
 To classify from a pretrained model:
-
-   tar -zxf classifier.tgz
-   python app.py # runs the app
+<pre>
+# extract the pre-trained classifier
+tar -zxf classifier.tgz
+# run the app
+python app.py
+</pre>
 
 To train a new model:
-
-   tar -zxf corpora.tgz 
-   python refresh\_dict.py corpora/dump\_hal.train corpora/dump\_hal.test
-   python train.py corpora/dump\_hal.train corpora/dump\_hal.test
+<pre>
+# extract the corpora
+tar -zxf corpora.tgz 
+# create the dictionary covering both train and test corpora (maps words to numbers)
+python refresh\_dict.py corpora/dump\_hal.train corpora/dump\_hal.test
+# train the model on the first corpus, test on the second
+python train.py corpora/dump\_hal.train corpora/dump\_hal.test
+</pre>
 
 
 Licence
