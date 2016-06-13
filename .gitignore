@@ -1,0 +1,6 @@
+# Python
+*.pyc
+.virtualenv
+# Models
+data/
+corpora/
