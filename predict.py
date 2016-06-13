@@ -26,6 +26,10 @@ def fit_maxent(corpus, lda_transform=(lambda x: x), max_samples=None):
     return meModel
 
 def eval_model(model, sample, possible_labels):
-    pred = model.predict([(str(x),float(c)) for x,c in sample])
+    pred = model.predict(doc_to_context(sample))
     return pred
+
+def get_probs(model, sample):
+    return model.eval_all(doc_to_context(sample))
+    
 

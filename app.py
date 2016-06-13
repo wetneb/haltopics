@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 import bottle
-from predict import eval_model, doc_to_context
+from predict import eval_model, doc_to_context, get_probs
 import json
 import cPickle
 from maxent.cmaxent import MaxentModel
@@ -30,13 +30,9 @@ readable_descriptions = {
     'SPI': 'Sciences de l\'ingénieur',
     'STAT': 'Statistiques',
     'QFIN': 'Économie et finance quantitative',
-    'SD': 'Sciences de... ??',
-    'KGF': 'Ahem... je sais pas :-/',
-    'STIC': '...',
-    'NHF': '...',
     'OTHER': 'Autre',
-    'BOND': 'My name is Bond.',
 }
+
 
 print "Loading model..."
 model = MaxentModel()
@@ -48,6 +44,16 @@ with open('data/dict-hal.pkl', 'rb') as f:
 corpus = HALCorpus(dct=dct)
 print "Done."
 
+def lookup_category(probas):
+    readable_list = []
+    for lst in probas:
+        if lst[0] in readable_descriptions:
+            readable_list.append(
+                    {'code':lst[0],
+                    'proba':lst[1],
+                    'desc':readable_descriptions[lst[0]]})
+    return readable_list
+
 @post('/predict')
 def run_prediction():
     text = request.forms.get('text').decode('utf-8')
@@ -55,8 +61,10 @@ def run_prediction():
     bow = corpus.dictionary.doc2bow(tokens)
     ctx = doc_to_context(bow)
     pred = eval_model(model, ctx, possible_labels)
-    return {'code':pred,
-            'description':readable_descriptions.get(pred,'Inconnu')}
+    probs = lookup_category(get_probs(model, ctx))
+    return {'decision':{'code':pred,
+            'description':readable_descriptions.get(pred,'Inconnu')},
+            'probabilities':probs}
 
 @route('/')
 def home():
