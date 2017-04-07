@@ -10,28 +10,52 @@ from hal import HALCorpus
 
 from bottle import route, run, post, request
 
-possible_labels = [
-'INFO', 'SD', 'SDV', 'SHS', 'PHYS', 'SDE', 'QFIN', 'KGF',
-'SCCO', 'STIC', 'NHF', 'SPI', 'OTHER', 'STAT', 'CHIM', 'NLIN',
-'MATH', 'BOND'
+readable_descriptions = [
+'CHIM': 'Chemistry',
+'INFO': 'Computer science',
+'MATH': 'Mathematics',
+'PHYS': 'Physics',
+'NLIN': 'Non-linear science',
+'SCCO': 'Cognitive science',
+'SDE': 'Environment sciences',
+'SDU': 'Planet and Universe',
+'SHS.ANTHRO-BIO': 'Biological anthropology',
+'SHS.ANTHRO-SE': 'Social Anthropology and ethnology',
+'SHS.ARCHEO': 'Archaeology and Prehistory',
+'SHS.ARCHI': 'Architecture, space management',
+'SHS.ART': 'Art and art history',
+'SHS.CLASS': 'Classical studies',
+'SHS.DEMO': 'Demography',
+'SHS.DROIT': 'Law',
+'SHS.ECO': 'Economies and finances',
+'SHS.EDU': 'Education',
+'SHS.ENVIR': 'Environmental studies',
+'SHS.GENRE': 'Gender studies',
+'SHS.GEO': 'Geography',
+'SHS.GESTION': 'Business administration',
+'SHS.HISPHILSO': 'History, Philosophy and Sociology of
+Sciences',
+'SHS.HIST': 'History',
+'SHS.INFO': 'Library and information sciences',
+'SHS.LANGUE': 'Linguistics',
+'SHS.LITT': 'Literature',
+'SHS.MUSEO': 'Cultural heritage and museology',
+'SHS.MUSIQ': 'Musicology and performing arts',
+'SHS.PHIL': 'Philosophy',
+'SHS.PSY': 'Psychology',
+'SHS.RELIG': 'Religions',
+'SHS.SCIPO': 'Political science',
+'SHS.SOCIO': 'Sociology',
+'SHS.STAT': 'Methods and statistics',
+'SDV': 'Life sciences',
+'SPI': 'Engineering sciences',
+'STAT': 'Statistics',
+'QFIN': 'Economy and quantitative finance',
+'OTHER': 'Other',
+}
     ]
 
-readable_descriptions = {
-    'CHIM':'Chimie',
-    'INFO':'Informatique',
-    'MATH':'Mathématiques',
-    'PHYS':'Physique',
-    'NLIN':'Science non linéaire',
-    'SCCO':'Sciences cognitives',
-    'SDE':'Sciences de l\'environnement',
-    'SDU': 'Planète et Univers',
-    'SHS': 'Sciences de l\'Homme et Société',
-    'SDV': 'Sciences du Vivant',
-    'SPI': 'Sciences de l\'ingénieur',
-    'STAT': 'Statistiques',
-    'QFIN': 'Économie et finance quantitative',
-    'OTHER': 'Autre',
-}
+possible_labels = readable_descriptions.keys()
 
 
 print "Loading model..."
