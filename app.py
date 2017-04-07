@@ -10,7 +10,7 @@ from hal import HALCorpus
 
 from bottle import route, run, post, request
 
-readable_descriptions = [
+readable_descriptions = {
 'CHIM': 'Chemistry',
 'INFO': 'Computer science',
 'MATH': 'Mathematics',
@@ -33,8 +33,7 @@ readable_descriptions = [
 'SHS.GENRE': 'Gender studies',
 'SHS.GEO': 'Geography',
 'SHS.GESTION': 'Business administration',
-'SHS.HISPHILSO': 'History, Philosophy and Sociology of
-Sciences',
+'SHS.HISPHILSO': 'History, Philosophy and Sociology of Sciences',
 'SHS.HIST': 'History',
 'SHS.INFO': 'Library and information sciences',
 'SHS.LANGUE': 'Linguistics',
@@ -53,7 +52,6 @@ Sciences',
 'QFIN': 'Economy and quantitative finance',
 'OTHER': 'Other',
 }
-    ]
 
 possible_labels = readable_descriptions.keys()
 
