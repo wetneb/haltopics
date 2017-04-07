@@ -12,7 +12,7 @@ multilingual_stop_words = set(stopwords.words('english')) | set(stopwords.words(
 
 REBUILD_PROAIXY_DICT = False
 
-rootclass_re = re.compile(r'^([A-Z\-]*)')
+rootclass_re = re.compile(r'^((SHS\.|)[A-Z\-]*)')
 def get_root_class(label):
     m = rootclass_re.match(label)
     if m:
@@ -32,7 +32,7 @@ class HALCorpus(corpora.TextCorpus):
         else:
             self.dictionary = dct
         # self.dictionary.filter_extremes()  # remove stopwords etc
- 
+
     def __iter__(self):
         for tokens in self.read():
             yield self.dictionary.doc2bow(tokens)
