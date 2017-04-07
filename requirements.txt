@@ -1,3 +1,5 @@
 nltk
 bottle
 gensim
+six
+numpy

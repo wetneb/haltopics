@@ -98,5 +98,7 @@ aromatic compounds.
         '''
 
 if __name__ == '__main__':
-   run(host='localhost', port=8000, debug=True)
+   run(host='0.0.0.0', port=6377, debug=True)
+
+app = application = bottle.default_app()
 
