@@ -1,6 +1,8 @@
 Category prediction for HAL submissions
 =======================================
 
+**This repository has been archived**. We recommend to use [Annif]( https://github.com/NatLibFi/Annif) instead.
+
 This is a simple maximum entropy classifier
 using bag-of-words features to predict the 
 root topic of a HAL submission.
